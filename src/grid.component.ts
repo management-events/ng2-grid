@@ -2,7 +2,7 @@ import {
   AfterContentInit,
   AfterViewInit,
   ChangeDetectorRef,
-  Component,
+  Component, ContentChild,
   ContentChildren,
   ElementRef,
   EventEmitter,
@@ -25,6 +25,7 @@ import { GridColumnComponent } from './grid-column.component';
 import { GridDataProvider } from './grid-data-provider';
 import { GridEvent } from './grid-event';
 import { GridFilter } from './grid-filter.interface';
+import { GridHeadingComponent } from './grid-heading.component';
 
 /**
  * Data grid component class.
@@ -37,7 +38,7 @@ import { GridFilter } from './grid-filter.interface';
  */
 @Component({
   selector: 'ng-grid',
-  template: `    
+  template: `
       <div class="ng-grid"
            (mousedown)="onGridMouseDown($event)"
            (mousemove)="onGridMouseMove($event)"
@@ -46,6 +47,10 @@ import { GridFilter } from './grid-filter.interface';
                [class.scroll]="options.get('height')"
                [style.width]="options.get('width')">
               <table [class]="getHeadingCssClass()" [style.width]="options.get('width')">
+                  <caption *ngIf="headingComponent">
+                      <ng-grid-template-renderer [template]="headingComponent.template">
+                      </ng-grid-template-renderer>
+                  </caption>
                   <thead *ngIf="options.get('heading')">
                   <tr>
                       <th *ngIf="options.get('selection')" class="ng-grid-heading selection">
@@ -81,15 +86,15 @@ import { GridFilter } from './grid-filter.interface';
                               <option></option>
                               <option
                                       *ngFor="let item of column.items"
-                                      [value]="item[column.valueField]">{{item[column.textField]}}</option>
+                                      [value]="item[column.valueField]">{{item[column.textField]}}
+                              </option>
                           </select>
-                          <ng-grid-column-template-renderer
+                          <ng-grid-template-renderer
                                   *ngIf="isTemplateColumn(column) && column.headerTemplate"
                                   [template]="column.headerTemplate"
-                                  [column]="column"
-                                  [data]="row"
+                                  [context]="{column: column, data: row}"
                           >
-                          </ng-grid-column-template-renderer>
+                          </ng-grid-template-renderer>
                       </td>
                   </tr>
                   </tbody>
@@ -121,11 +126,11 @@ import { GridFilter } from './grid-filter.interface';
                           [style.width]="column.width"
                           [style.text-align]="column.textAlign"
                           [ngClass]="column.cellStyleCallback(row)">
-                          <span *ngIf="column.cellTemplate">
-                              <ng-grid-column-template-renderer [template]="column.cellTemplate" [column]="column" [data]="row">
-                              </ng-grid-column-template-renderer>
+                          <span *ngIf="column.template">
+                              <ng-grid-template-renderer [template]="column.template" [context]="{column: column, data: row}">
+                              </ng-grid-template-renderer>
                           </span>
-                          <span *ngIf="!column.cellTemplate">
+                          <span *ngIf="!column.template">
                               {{column.resolveCell(row)}}
                           </span>
                       </td>
@@ -190,6 +195,7 @@ export class GridComponent implements OnInit, AfterContentInit, AfterViewInit {
   @ViewChild('header') headerRef: ElementRef;
   @ViewChild('body') bodyRef: ElementRef;
   @ViewChild('table') tableRef: ElementRef;
+  @ContentChild(GridHeadingComponent) headingComponent: GridHeadingComponent;
 
   private _options: GridOptions;
   private columns: Array<GridColumnComponent> = [];

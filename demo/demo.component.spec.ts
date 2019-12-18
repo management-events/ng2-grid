@@ -7,13 +7,14 @@ import { DemoComponent } from './demo.component';
 import {
   GridComponent,
   GridColumnComponent,
-  GridColumnTemplateRenderComponent,
-  GridStickyScrollComponent
+  GridStickyScrollComponent,
+  GridHeadingComponent
 } from '../src/index';
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { GridTemplateRendererComponent } from '../src/grid-template-renderer.component';
 
 describe('DemoComponent', function () {
   let de: DebugElement;
@@ -31,7 +32,8 @@ describe('DemoComponent', function () {
         DemoComponent,
         GridComponent,
         GridColumnComponent,
-        GridColumnTemplateRenderComponent,
+        GridHeadingComponent,
+        GridTemplateRendererComponent,
         GridStickyScrollComponent
       ]
     })

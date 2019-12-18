@@ -9,11 +9,15 @@
   <ng-grid-column name="isMarried"></ng-grid-column>
 </ng-grid>
 
-<h2>Column Definition Example</h2>
 <div class="mb-md">
   <button (click)="onClearSelectionBtnClick()">Clear Selection</button>
 </div>
 <ng-grid #columnGrid>
+  <ng-grid-heading>
+    <ng-template>
+      <h2 class="custom-grid-heading">Column definition example</h2>
+    </ng-template>
+  </ng-grid-heading>
   <ng-grid-column
     cssClass="name"
     heading="Name"
