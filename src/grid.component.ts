@@ -47,8 +47,8 @@ import { GridHeadingComponent } from './grid-heading.component';
                [class.scroll]="options.get('height')"
                [style.width]="options.get('width')">
               <table [class]="getHeadingCssClass()" [style.width]="options.get('width')">
-                  <caption>
-                      <ng-grid-template-renderer *ngIf="headingComponent" [template]="headingComponent.template">
+                  <caption *ngIf="headingComponent">
+                      <ng-grid-template-renderer [template]="headingComponent.template">
                       </ng-grid-template-renderer>
                   </caption>
                   <thead *ngIf="options.get('heading')">

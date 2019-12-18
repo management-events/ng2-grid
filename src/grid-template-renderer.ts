@@ -16,8 +16,8 @@ import {
   template: ''
 })
 export class GridTemplateRenderer implements OnInit {
-  @Input() context: any;
-  @Input() template: TemplateRef<any>;
+  @Input() public context: any;
+  @Input() public template: TemplateRef<any>;
 
   /**
    * Class constructor.
