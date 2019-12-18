@@ -5,8 +5,6 @@ import {
   OnInit, TemplateRef
 } from '@angular/core';
 
-import { GridColumnComponent } from './grid-column.component';
-
 /**
  * GridTemplateRenderer component used to render Grid column templates.
  *

@@ -1,7 +1,7 @@
 import {
   Component,
   TemplateRef,
-  OnInit, ContentChild
+  ContentChild
 } from '@angular/core';
 
 /**
@@ -16,6 +16,6 @@ import {
   'selector': 'ng-grid-heading',
   'template': ''
 })
-export class GridHeadingComponent implements OnInit {
+export class GridHeadingComponent {
   @ContentChild(TemplateRef) public template: TemplateRef<any>;
 }

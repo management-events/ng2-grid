@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  Renderer2, TemplateRef,
+  Renderer2,
   ViewChild
 } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
