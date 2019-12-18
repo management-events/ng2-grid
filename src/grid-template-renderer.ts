@@ -32,7 +32,6 @@ export class GridTemplateRenderer implements OnInit {
    * Handle onInit event.
    */
   ngOnInit() {
-    console.log(this.template);
     this.viewContainerRef.createEmbeddedView(this.template, this.context);
   }
 }
