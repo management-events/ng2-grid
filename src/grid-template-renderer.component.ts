@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 /**
- * GridTemplateRenderer component used to render Grid column templates.
+ * GridTemplateRendererComponent component used to render Grid column templates.
  *
  * @author Branimir Borisov <branimir@raketasoft.com>
  * @since 1.0.0-alpha.4
@@ -15,7 +15,7 @@ import {
   selector: 'ng-grid-template-renderer',
   template: ''
 })
-export class GridTemplateRenderer implements OnInit {
+export class GridTemplateRendererComponent implements OnInit {
   @Input() public context: any;
   @Input() public template: TemplateRef<any>;
 
