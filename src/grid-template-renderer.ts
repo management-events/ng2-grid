@@ -8,18 +8,17 @@ import {
 import { GridColumnComponent } from './grid-column.component';
 
 /**
- * GridColumnTemplateRenderComponent component used to render Grid column templates.
+ * GridTemplateRenderer component used to render Grid column templates.
  *
  * @author Branimir Borisov <branimir@raketasoft.com>
  * @since 1.0.0-alpha.4
  */
 @Component({
-  selector: 'ng-grid-column-template-renderer',
+  selector: 'ng-grid-template-renderer',
   template: ''
 })
-export class GridColumnTemplateRenderComponent implements OnInit {
-  @Input() data: any;
-  @Input() column: GridColumnComponent;
+export class GridTemplateRenderer implements OnInit {
+  @Input() context: any;
   @Input() template: TemplateRef<any>;
 
   /**
@@ -33,9 +32,7 @@ export class GridColumnTemplateRenderComponent implements OnInit {
    * Handle onInit event.
    */
   ngOnInit() {
-    this.viewContainerRef.createEmbeddedView(this.template, {
-      'column': this.column,
-      'data': this.data
-    });
+    console.log(this.template);
+    this.viewContainerRef.createEmbeddedView(this.template, this.context);
   }
 }

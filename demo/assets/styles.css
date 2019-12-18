@@ -156,3 +156,10 @@ nav a.router-link-active {
 .text-center {
   text-align: center;
 }
+.custom-grid-heading {
+  color: #888;
+  background: #f9f9f9;
+  border-bottom:1px solid #ccc;
+  margin: 0;
+  padding: 5px 0 5px 0;
+}
