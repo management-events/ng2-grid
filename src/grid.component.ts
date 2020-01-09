@@ -126,11 +126,11 @@ import { GridHeadingComponent } from './grid-heading.component';
                           [style.width]="column.width"
                           [style.text-align]="column.textAlign"
                           [ngClass]="column.cellStyleCallback(row)">
-                          <span *ngIf="column.template">
-                              <ng-grid-template-renderer [template]="column.template" [context]="{column: column, data: row}">
+                          <span *ngIf="column.cellTemplate">
+                              <ng-grid-template-renderer [template]="column.cellTemplate" [context]="{column: column, data: row}">
                               </ng-grid-template-renderer>
                           </span>
-                          <span *ngIf="!column.template">
+                          <span *ngIf="!column.cellTemplate">
                               {{column.resolveCell(row)}}
                           </span>
                       </td>
