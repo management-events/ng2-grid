@@ -86,14 +86,14 @@ import { GridHeadingComponent } from './grid-heading.component';
                               <option></option>
                               <option
                                       *ngFor="let item of column.items"
-                                      [value]="item[column.valueField]">{{item[column.textField]}}
-                              </option>
+                                      [value]="item[column.valueField]">{{item[column.textField]}}</option>
                           </select>
                           <ng-grid-template-renderer
                                   *ngIf="isTemplateColumn(column) && column.headerTemplate"
                                   [template]="column.headerTemplate"
                                   [context]="{column: column, data: row}"
                           >
+
                           </ng-grid-template-renderer>
                       </td>
                   </tr>
