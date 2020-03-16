@@ -22,8 +22,8 @@ import {
 })
 export class GridStickyScrollComponent implements OnInit {
   @Input() scrollableElement: ElementRef;
-  @ViewChild('stickyScroll') scrollContainer: ElementRef;
-  @ViewChild('areaCopy') areaCopy: ElementRef;
+  @ViewChild('stickyScroll', {static: true}) scrollContainer: ElementRef;
+  @ViewChild('areaCopy', {static: true}) areaCopy: ElementRef;
 
   private tableScrollListener: any;
   private stickyScrollListener: any;
@@ -89,10 +89,11 @@ export class GridStickyScrollComponent implements OnInit {
     const scrollableElementWidth: number = this.scrollableElement.nativeElement.scrollWidth;
     const stickyScrollWidth: number = this.areaCopy.nativeElement.scrollWidth;
     const scrollRatio: number = (stickyScrollWidth / scrollableElementWidth);
+    const areaCopyParent: HTMLElement = this.areaCopy.nativeElement.parentElement;
     this.stickyScrollListener();
-    this.areaCopy.nativeElement.parentElement.scrollLeft = Number(event.srcElement.scrollLeft * scrollRatio).toFixed();
+    areaCopyParent.scrollLeft = Number(Number((event.srcElement as Element).scrollLeft * scrollRatio).toFixed());
     this.stickyScrollListener = this.attachScrollListener(
-      this.areaCopy.nativeElement.parentElement,
+      areaCopyParent,
       this.onScroll
     );
   }
@@ -107,10 +108,11 @@ export class GridStickyScrollComponent implements OnInit {
     const scrollableElementWidth: number = this.scrollableElement.nativeElement.scrollWidth;
     const stickyScrollWidth: number = this.areaCopy.nativeElement.scrollWidth;
     const scrollRatio: number = scrollableElementWidth / stickyScrollWidth;
+    const scrollableElementParent: HTMLElement = this.scrollableElement.nativeElement.parentElement;
     this.tableScrollListener();
-    this.scrollableElement.nativeElement.parentElement.scrollLeft = Number(event.srcElement.scrollLeft * scrollRatio).toFixed();
+    scrollableElementParent.scrollLeft = Number(Number((event.srcElement as Element).scrollLeft * scrollRatio).toFixed());
     this.tableScrollListener = this.attachScrollListener(
-      this.scrollableElement.nativeElement.parentElement,
+      scrollableElementParent,
       this.onTableScroll
     );
   }

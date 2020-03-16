@@ -192,9 +192,9 @@ export class GridComponent implements OnInit, AfterContentInit, AfterViewInit {
   @Output() requestSend: EventEmitter<GridEvent> = new EventEmitter<GridEvent>();
   @Output() serverError: EventEmitter<GridEvent> = new EventEmitter<GridEvent>();
   @Output() update: EventEmitter<GridEvent> = new EventEmitter<GridEvent>();
-  @ViewChild('header') headerRef: ElementRef;
-  @ViewChild('body') bodyRef: ElementRef;
-  @ViewChild('table') tableRef: ElementRef;
+  @ViewChild('header', {static: true}) headerRef: ElementRef;
+  @ViewChild('body', {static: true}) bodyRef: ElementRef;
+  @ViewChild('table', {static: true}) tableRef: ElementRef;
   @ContentChild(GridHeadingComponent) headingComponent: GridHeadingComponent;
 
   private _options: GridOptions;
